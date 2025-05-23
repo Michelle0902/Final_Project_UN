@@ -4,7 +4,7 @@ import { useAuth } from '../store/hooks';
 import { useAppDispatch } from '../store/hooks';
 import { logout } from '../slices/authSlice';
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC = React.memo(() => {
   const { isAuthenticated } = useAuth();
   const dispatch = useAppDispatch();
 
@@ -29,6 +29,6 @@ const NavBar: React.FC = () => {
       </div>
     </nav>
   );
-};
+});
 
 export default NavBar;

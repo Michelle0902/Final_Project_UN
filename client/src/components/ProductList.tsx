@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { loadProducts, filterProducts, fetchByCategory } from '../slices/productSlice';
 import { Link } from 'react-router-dom';
@@ -21,16 +21,16 @@ const ProductList: React.FC = () => {
     }
   }, [dispatch, page, search, category]);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setPage(1);
-  };
+  }, []);
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleCategoryChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategory(e.target.value);
     setSearch('');
     setPage(1);
-  };
+  }, []);
 
   return (
     <div className="px-4 py-6 max-w-6xl mx-auto">
